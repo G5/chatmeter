@@ -5,7 +5,7 @@ RSpec.describe Chatmeter do
     expect(Chatmeter::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "should return correct login response" do
+    expect(Chatmeter.new).to be ""
   end
 end
