@@ -29,6 +29,7 @@ module Chatmeter
       if !@api_key && options.has_key?(:username) && options.has_key?(:password)
         username = options.delete(:username)
         password = options.delete(:password)
+        //TODO: add api version
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options.merge(:headers => HEADERS))
         @api_key = self.post_login(username, password).body["token"]
       end
