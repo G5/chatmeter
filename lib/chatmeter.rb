@@ -20,7 +20,7 @@ module Chatmeter
       host:        ENV['CHATMETER_API_ROOT'],
       username:    ENV['CHATMETER_ADMIN_USER'],
       password:    ENV['CHATMETER_ADMIN_PASSWORD'],
-      scheme:      'https'
+      scheme:      'https',
       api_version: 'v5'
     }
 
