@@ -1,5 +1,5 @@
 module Chatmeter
-  class Users
+  class UserManagement
 
   end
 end

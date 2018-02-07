@@ -22,7 +22,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'chatmeter'
+chatmeter = Chatmeter::API.new(:username => USERNAME, :password => PASSWORD)
+```
 
 ## Development
 
