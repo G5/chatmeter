@@ -1,4 +1,5 @@
 require 'chatmeter/api/mock/user_management'
+require 'chatmeter/api/mock/single_signon'
 require 'chatmeter/api/mock/login'
 
 module Chatmeter

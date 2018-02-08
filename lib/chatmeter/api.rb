@@ -8,6 +8,7 @@ require 'json'
 
 require "chatmeter/version"
 require "chatmeter/api/user_management"
+require "chatmeter/api/single_signon"
 require "chatmeter/api/login"
 require "chatmeter/api/mock"
 
@@ -44,13 +45,13 @@ module Chatmeter
     end
 
     def request(params, &block)
-      
+
       params[:path] = "/#{OPTIONS[:api_version]}#{params[:path]}"
 
       begin
         response = @connection.request(params, &block)
       rescue Excon::Errors::HTTPStatusError => error
-        print error
+        puts error
       end
 
       @connection.reset
