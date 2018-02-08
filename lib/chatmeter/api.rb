@@ -5,6 +5,7 @@ require "securerandom"
 require "uri"
 require "multi_json"
 require 'json'
+require 'pry'
 
 require "chatmeter/version"
 require "chatmeter/api/user_management"
@@ -41,6 +42,7 @@ module Chatmeter
         @api_key = JSON.parse(self.post_login(username, password).body)["token"]
       end
 
+      puts @api_key
       @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", :headers => { Authorization: @api_key }, :mock => options[:mock])
     end
 
