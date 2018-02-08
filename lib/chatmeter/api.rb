@@ -10,7 +10,6 @@ require "chatmeter/version"
 require "chatmeter/api/user_management"
 require "chatmeter/api/login"
 require "chatmeter/api/mock"
-require "pry"
 
 module Chatmeter
   class API

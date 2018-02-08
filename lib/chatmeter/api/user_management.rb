@@ -34,7 +34,7 @@ module Chatmeter
       request(
         expects:  200,
         method:   :put,
-        path:     "/users/",
+        path:     "/users/#{user_id}",
         query:    params
       )
     end
@@ -44,7 +44,7 @@ module Chatmeter
       request(
         expects:  200,
         method:   :put,
-        path:     "/users",
+        path:     "/users/#{user_id}/password",
         query:    params
       )
     end
@@ -54,17 +54,17 @@ module Chatmeter
       request(
         expects:  200,
         method:   :delete,
-        path:     "/users"
+        path:     "/users/#{user_id}"
       )
     end
 
 
     # POST /users
-    def enable_user(params)
+    def enable_user(user_id, params)
       request(
         expects:  200,
         method:   :post,
-        path:     "/users",
+        path:     "/users/#{user_id}/status",
         query:    params
       )
     end
