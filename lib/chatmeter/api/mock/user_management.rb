@@ -3,7 +3,7 @@ module Chatmeter
     module Mock
 
       # stub GET /users/
-      Excon.stub(expects: 200, method: :get, path: '/users') do |params|
+      Excon.stub(expects: 200, method: :get, path: '/v5/users') do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           body: {
@@ -26,7 +26,7 @@ module Chatmeter
       end
 
       # stub GET /user/{user_id}
-      Excon.stub(expects: 200, method: :get, path: %r{^/user/([^/]+)$}) do |params|
+      Excon.stub(expects: 200, method: :get, path: %r{^/v5/user/([^/]+)$}) do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           body: {
@@ -47,7 +47,7 @@ module Chatmeter
       end
 
       # stub POST /users
-      Excon.stub(expects: 200, method: :post, path: '/users') do |params|
+      Excon.stub(expects: 200, method: :post, path: '/v5/users') do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           body: {
@@ -64,7 +64,7 @@ module Chatmeter
       end
 
       # stub PUT /users/{user_id}
-      Excon.stub(expects: 200, method: :put, path: %r{^/users/([^/]+)$}) do |params|
+      Excon.stub(expects: 200, method: :put, path: %r{^/v5/users/([^/]+)$}) do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           body: {
@@ -81,7 +81,7 @@ module Chatmeter
       end
 
       # stub PUT /users/{user_id}/password
-      Excon.stub(expects: 200, method: :put, path: %r{^/users/([^/]+)/password$}) do |params|
+      Excon.stub(expects: 200, method: :put, path: %r{^/v5/users/([^/]+)/password$}) do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           status: 200
@@ -89,7 +89,7 @@ module Chatmeter
       end
 
       # stub DELETE /users/{user_id}
-      Excon.stub(expects: 200, method: :delete, path: %r{^/users/([^/]+)$}) do |params|
+      Excon.stub(expects: 200, method: :delete, path: %r{^/v5/users/([^/]+)$}) do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           status: 200
@@ -97,7 +97,7 @@ module Chatmeter
       end
 
       # stub POST /users/{user_id}/status
-      Excon.stub(expects: 200, method: :post, path: %r{^/users/([^/]+)/status$}) do |params|
+      Excon.stub(expects: 200, method: :post, path: %r{^/v5/users/([^/]+)/status$}) do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           status: 200

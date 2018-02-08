@@ -31,24 +31,26 @@ module Chatmeter
 
     def initialize(options={})
       options = OPTIONS.merge(options)
+      options = options.merge(:headers => HEADERS)
 
       if !@api_key && options.has_key?(:username) && options.has_key?(:password)
         username = options.delete(:username)
         password = options.delete(:password)
-        @connection = Excon.new("#{options[:scheme]}://#{options[:host]}/#{options[:api_version]}", options.merge(:headers => HEADERS))
-        @api_key = self.post_login(username, password).body[:token]
+        @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
+        @api_key = JSON.parse(self.post_login(username, password).body)["token"]
       end
 
-      user_pass = ":#{@api_key}"
-      options[:headers] = HEADERS.merge({'Authorization' => "Basic #{Base64.encode64(user_pass).gsub("\n", '')}"}).merge(options[:headers])
-
-      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
+      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", :headers => { Authorization: @api_key }, :mock => options[:mock])
     end
 
     def request(params, &block)
+      
+      params[:path] = "/#{OPTIONS[:api_version]}#{params[:path]}"
+
       begin
         response = @connection.request(params, &block)
       rescue Excon::Errors::HTTPStatusError => error
+        print error
       end
 
       @connection.reset

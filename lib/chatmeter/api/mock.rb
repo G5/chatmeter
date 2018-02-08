@@ -12,8 +12,8 @@ module Chatmeter
       def self.parse_stub_params(params)
         mock_data = nil
 
-        if params[:headers].has_key?('Authorization')
-          api_key = Base64.decode64(params[:headers]['Authorization']).split(':').last
+        if params[:headers].has_key?(:Authorization)
+          api_key = params[:headers][:Authorization]
 
           parsed = params.dup
           begin # try to JSON decode
