@@ -10,6 +10,7 @@ require 'pry'
 require "chatmeter/version"
 require "chatmeter/api/user_management"
 require "chatmeter/api/single_signon"
+require "chatmeter/api/group"
 require "chatmeter/api/login"
 require "chatmeter/api/mock"
 
@@ -42,7 +43,6 @@ module Chatmeter
         @api_key = JSON.parse(self.post_login(username, password).body)["token"]
       end
 
-      puts @api_key
       @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", :headers => { Authorization: @api_key }, :mock => options[:mock])
     end
 
