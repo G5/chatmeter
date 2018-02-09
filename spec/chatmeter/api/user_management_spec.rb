@@ -6,7 +6,7 @@ RSpec.describe Chatmeter::API do
     let(:chatmeter) { Chatmeter::API.new(username: '123456@example.com', password: 'pw12345', mock: true) }
 
     it "should return valid response for #list_all_users" do
-      users = chatmeter.list_all_users.body[:users]
+      users = chatmeter.list_all_users({username: 'TestUser'}).body[:users]
       expect(users.length).to eq 1
       expect(users.first[:id]).to eq "3233"
       expect(users.first[:accountId]).to eq "23232"

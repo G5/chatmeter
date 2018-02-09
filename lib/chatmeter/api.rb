@@ -11,6 +11,7 @@ require "chatmeter/version"
 require "chatmeter/api/user_management"
 require "chatmeter/api/single_signon"
 require "chatmeter/api/group"
+require "chatmeter/api/user_group_access"
 require "chatmeter/api/login"
 require "chatmeter/api/mock"
 
@@ -43,7 +44,7 @@ module Chatmeter
         @api_key = JSON.parse(self.post_login(username, password).body)["token"]
       end
 
-      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", :headers => { Authorization: @api_key }, :mock => options[:mock])
+      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: { Authorization: @api_key }, mock: options[:mock])
     end
 
     def request(params, &block)

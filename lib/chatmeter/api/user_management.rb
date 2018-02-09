@@ -2,11 +2,12 @@ module Chatmeter
   class API
 
     # GET /users
-    def list_all_users
+    def list_all_users(params={})
       request(
         expects: 200,
         method:  :get,
-        path:    "/users"
+        path:    "/users",
+        query:    params
       )
     end
 
