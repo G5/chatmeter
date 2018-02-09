@@ -3,6 +3,8 @@ require 'chatmeter/api/mock/single_signon'
 require 'chatmeter/api/mock/group'
 require 'chatmeter/api/mock/user_group_access'
 require 'chatmeter/api/mock/login'
+require 'chatmeter/api/mock/location'
+require 'chatmeter/api/mock/account'
 
 module Chatmeter
   class API
