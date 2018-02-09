@@ -28,8 +28,8 @@ module Chatmeter
         }
       end
 
-      # stub DELETE /groups/{groups_id}
-      Excon.stub(expects: 200, method: :delete, path: %r{^/v5/groups/([^/]+)/locations$}) do |params|
+      # stub DELETE /users/{user_id}/groups?groupIds={group_ids}
+      Excon.stub(expects: 200, method: :delete, path: %r{^/v5/users/([^/]+)/groups(.*)$}) do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           status: 200

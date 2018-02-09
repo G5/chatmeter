@@ -21,11 +21,11 @@ module Chatmeter
     end
 
     # DELETE /users/{user_id}/groups?groupIds={group_ids}
-    def delete_group_access(user_id, group_id)
+    def delete_group_access(user_id, group_ids)
       request(
         expects:  200,
         method:   :delete,
-        path:     "/users/#{user_id}/groups?groupIds=#{group1.join(',')}"
+        path:     "/users/#{user_id}/groups?groupIds=#{group_ids.join(',')}"
       )
     end
 
