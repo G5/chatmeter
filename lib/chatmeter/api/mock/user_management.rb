@@ -6,7 +6,7 @@ module Chatmeter
       Excon.stub(expects: 200, method: :get, path: '/v5/users') do |params|
         request_params, mock_data = parse_stub_params(params)
         {
-          body: {
+          body: '{
             "users": [
               {
                 "id": "3233",
@@ -20,7 +20,7 @@ module Chatmeter
               }
             ],
             "hasMore": false
-          },
+          }',
           status: 200
         }
       end
@@ -48,17 +48,16 @@ module Chatmeter
 
       # stub POST /users
       Excon.stub(expects: 200, method: :post, path: '/v5/users') do |params|
-        request_params, mock_data = parse_stub_params(params)
         {
-          body: {
-            "accountId": request_params[:query][:accountId],
-            "username": request_params[:query][:username],
-            "email": request_params[:query][:email],
-            "phoneNumber": request_params[:query][:phoneNumber],
-            "firstName": request_params[:query][:firstName],
-            "lastName": request_params[:query][:lastName],
-            "userType": request_params[:query][:userType]
-          },
+          body: '{
+            "accountId": "23232",
+            "username": "TestUser",
+            "email": "user@test.com",
+            "phoneNumber": "555555555",
+            "firstName": "Test",
+            "lastName": "User",
+            "userType": "Standard"
+          }',
           status: 200
         }
       end

@@ -5,7 +5,7 @@ module Chatmeter
         Excon.stub(expects: 200, method: :get, path: '/v5/accounts') do |params|
             request_params, mock_data = parse_stub_params(params)
             {
-            body: {
+            body: '{
                 "accounts": [
                   {
                     "id": "23232",
@@ -13,7 +13,7 @@ module Chatmeter
                   }
                 ],
                 "hasMore": false
-                },
+                }',
                 status: 200
             }
         end

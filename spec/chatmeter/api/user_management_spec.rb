@@ -6,16 +6,16 @@ RSpec.describe Chatmeter::API do
     let(:chatmeter) { Chatmeter::API.new(username: '123456@example.com', password: 'pw12345', mock: true) }
 
     it "should return valid response for #list_all_users" do
-      users = chatmeter.list_all_users({username: 'TestUser'}).body[:users]
+      users = chatmeter.list_all_users({username: 'TestUser'})
       expect(users.length).to eq 1
-      expect(users.first[:id]).to eq "3233"
-      expect(users.first[:accountId]).to eq "23232"
-      expect(users.first[:username]).to eq "TestUser"
-      expect(users.first[:email]).to eq "user@test.com"
-      expect(users.first[:phoneNumber]).to eq "555555555"
-      expect(users.first[:firstName]).to eq "test"
-      expect(users.first[:lastName]).to eq "User"
-      expect(users.first[:userType]).to eq "Standard"
+      expect(users.first["id"]).to eq "3233"
+      expect(users.first["accountId"]).to eq "23232"
+      expect(users.first["username"]).to eq "TestUser"
+      expect(users.first["email"]).to eq "user@test.com"
+      expect(users.first["phoneNumber"]).to eq "555555555"
+      expect(users.first["firstName"]).to eq "test"
+      expect(users.first["lastName"]).to eq "User"
+      expect(users.first["userType"]).to eq "Standard"
     end
 
     it "should return valid response for #get_user" do
@@ -43,14 +43,14 @@ RSpec.describe Chatmeter::API do
         "firstName": "Test",
         "lastName": "User",
         "userType": "Standard"
-      }).body
-      expect(user[:accountId]).to eq "23232"
-      expect(user[:username]).to eq "TestUser"
-      expect(user[:email]).to eq "user@test.com"
-      expect(user[:phoneNumber]).to eq "555555555"
-      expect(user[:firstName]).to eq "Test"
-      expect(user[:lastName]).to eq "User"
-      expect(user[:userType]).to eq "Standard"
+      })
+      expect(user["accountId"]).to eq "23232"
+      expect(user["username"]).to eq "TestUser"
+      expect(user["email"]).to eq "user@test.com"
+      expect(user["phoneNumber"]).to eq "555555555"
+      expect(user["firstName"]).to eq "Test"
+      expect(user["lastName"]).to eq "User"
+      expect(user["userType"]).to eq "Standard"
     end
 
     it "should return valid response for #update_user" do

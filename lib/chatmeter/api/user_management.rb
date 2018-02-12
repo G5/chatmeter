@@ -3,12 +3,13 @@ module Chatmeter
 
     # GET /users
     def list_all_users(params={})
-      request(
+      req = request(
         expects: 200,
         method:  :get,
         path:    "/users",
         query:    params
       )
+      JSON.parse(req.body)["users"] if req.body
     end
 
     # GET /user/{user_id}
@@ -22,12 +23,14 @@ module Chatmeter
 
     # POST /users
     def create_new_user(params)
-      request(
+      req = request(
         expects:  200,
         method:   :post,
         path:     "/users",
-        query:    params
+        body:     params.to_json
       )
+
+      JSON.parse(req.body) if req.body
     end
 
     # PUT /users/{user_id}
