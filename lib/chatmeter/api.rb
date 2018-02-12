@@ -13,6 +13,7 @@ require "chatmeter/api/group"
 require "chatmeter/api/account"
 require "chatmeter/api/location"
 require "chatmeter/api/user_group_access"
+require "chatmeter/api/user_location_access"
 require "chatmeter/api/login"
 require "chatmeter/api/mock"
 
@@ -36,7 +37,7 @@ module Chatmeter
 
     def initialize(options={})
       options = OPTIONS.merge(options)
-      options = options.merge(:headers => HEADERS)
+      options = options.merge(headers: HEADERS)
 
       if !@api_key && options.has_key?(:username) && options.has_key?(:password)
         username = options.delete(:username)
