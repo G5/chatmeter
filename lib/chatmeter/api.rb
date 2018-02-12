@@ -5,7 +5,6 @@ require "securerandom"
 require "uri"
 require "multi_json"
 require 'json'
-require 'pry'
 
 require "chatmeter/version"
 require "chatmeter/api/user_management"
