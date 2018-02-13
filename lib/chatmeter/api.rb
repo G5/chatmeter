@@ -43,20 +43,30 @@ module Chatmeter
         username = options.delete(:username)
         password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
-        @api_key = JSON.parse(self.post_login(username, password).body)["token"]
+        @api_key = self.post_login(username, password).body["token"]
       end
 
       @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: { Authorization: @api_key }, mock: options[:mock])
     end
 
     def request(params, &block)
-
       params[:path] = "/#{OPTIONS[:api_version]}#{params[:path]}"
 
       begin
         response = @connection.request(params, &block)
       rescue Excon::Errors::HTTPStatusError => error
         puts error
+      end
+
+      if response.body && !response.body.empty?
+        begin
+          response.body = MultiJson.load(response.body)
+        rescue
+          if response.headers['Content-Type'] === 'application/json'
+            raise
+          end
+          # leave non-JSON body as is
+        end
       end
 
       @connection.reset

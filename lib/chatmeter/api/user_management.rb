@@ -9,7 +9,7 @@ module Chatmeter
         path:    "/users",
         query:    params
       )
-      JSON.parse(req.body)["users"] if req.body
+      req.body["users"]
     end
 
     # GET /user/{user_id}
@@ -29,8 +29,7 @@ module Chatmeter
         path:     "/users",
         body:     params.to_json
       )
-
-      JSON.parse(req.body) if req.body
+      req.body
     end
 
     # PUT /users/{user_id}
