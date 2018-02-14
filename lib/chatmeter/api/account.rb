@@ -2,14 +2,12 @@ module Chatmeter
     class API
 
       def accounts(query={})
-        req = request(
+        request(
           expects: 200,
           method:  :get,
           path:    '/accounts',
           query:    query
         )
-
-        req.body[:accounts]
       end
 
       # POST /accounts
