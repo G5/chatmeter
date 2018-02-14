@@ -67,13 +67,13 @@ module Chatmeter
         request_params, mock_data = parse_stub_params(params)
         {
           body: {
-            "accountId": request_params[:query][:accountId],
-            "username": request_params[:query][:username],
-            "email": request_params[:query][:email],
-            "phoneNumber": request_params[:query][:phoneNumber],
-            "firstName": request_params[:query][:firstName],
-            "lastName": request_params[:query][:lastName],
-            "userType": request_params[:query][:userType]
+            "accountId": request_params[:body]["accountId"],
+            "username": request_params[:body]["username"],
+            "email": request_params[:body]["email"],
+            "phoneNumber": request_params[:body]["phoneNumber"],
+            "firstName": request_params[:body]["firstName"],
+            "lastName": request_params[:body]["lastName"],
+            "userType": request_params[:body]["userType"]
           },
           status: 200
         }

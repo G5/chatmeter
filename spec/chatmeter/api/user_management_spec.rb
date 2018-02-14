@@ -1,4 +1,5 @@
 require "spec_helper"
+require "pry"
 
 RSpec.describe Chatmeter::API do
 
@@ -19,7 +20,7 @@ RSpec.describe Chatmeter::API do
     end
 
     it "should return valid response for #get_user" do
-      user = chatmeter.get_user('5877d8e8b71466175f392449').body
+      user = chatmeter.get_user('5877d8e8b71466175f392449')
       expect(user[:id]).to eq "5877d8e8b71466175f392449"
       expect(user[:username]).to eq "companyuser"
       expect(user[:phoneNumber]).to eq "8443245000"
@@ -55,15 +56,15 @@ RSpec.describe Chatmeter::API do
 
     it "should return valid response for #update_user" do
       user = chatmeter.update_user('23232', {
-        "accountId": "23232",
-        "username": "TestUser",
-        "password": "secret",
-        "email": "user@test.com",
-        "phoneNumber": "555555555",
-        "firstName": "Test",
-        "lastName": "User",
-        "userType": "Standard"
-      }).body
+        accountId: "23232",
+        username: "TestUser",
+        password: "secret",
+        email: "user@test.com",
+        phoneNumber: "555555555",
+        firstName: "Test",
+        lastName: "User",
+        userType: "Standard"
+      })
       expect(user[:accountId]).to eq "23232"
       expect(user[:username]).to eq "TestUser"
       expect(user[:email]).to eq "user@test.com"
@@ -75,20 +76,17 @@ RSpec.describe Chatmeter::API do
 
     it "should return valid response for #update_user_password" do
       user = chatmeter.update_user_password('23232', {})
-      expect(user.body).to eq ""
-      expect(user.status).to eq 200
+      expect(user).to eq ""
     end
 
     it "should return valid response for #delete_user" do
       user = chatmeter.delete_user('23232')
-      expect(user.body).to eq ""
-      expect(user.status).to eq 200
+      expect(user).to eq ""
     end
 
     it "should return valid response for #enable_user" do
       user = chatmeter.enable_user('321', { "enabled": true })
-      expect(user.body).to eq ""
-      expect(user.status).to eq 200
+      expect(user).to eq ""
     end
 
   end

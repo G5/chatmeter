@@ -8,7 +8,7 @@ module Chatmeter
         method:  :get,
         path:    "/singlesignon/generateLoginToken?username=#{user_name}"
       )
-      req.body["ssoToken"]
+      req["ssoToken"]
     end
 
   end

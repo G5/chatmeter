@@ -9,7 +9,7 @@ module Chatmeter
         path:    "/users",
         query:    params
       )
-      req.body["users"]
+      req["users"]
     end
 
     # GET /user/{user_id}
@@ -23,13 +23,12 @@ module Chatmeter
 
     # POST /users
     def create_new_user(params)
-      req = request(
+      request(
         expects:  200,
         method:   :post,
         path:     "/users",
         body:     params.to_json
       )
-      req.body
     end
 
     # PUT /users/{user_id}

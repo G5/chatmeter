@@ -43,7 +43,7 @@ module Chatmeter
         username = options.delete(:username)
         password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
-        @api_key = self.post_login(username, password).body["token"]
+        @api_key = self.post_login(username, password)["token"]
       end
 
       @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: { Authorization: @api_key }, mock: options[:mock])
@@ -70,7 +70,7 @@ module Chatmeter
       end
 
       @connection.reset
-      response
+      response.body || ""
     end
   end
 end

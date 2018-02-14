@@ -7,13 +7,13 @@ module Chatmeter
         request_params, mock_data = parse_stub_params(params)
         {
           body: {
-          "accounts": [
-            {
-              "id": "23232",
-              "accountName": "Reseller 1"
-            }
-          ],
-          "hasMore": false
+            accounts: [
+              {
+                id: "23232",
+                accountName: "Reseller 1"
+              }
+            ],
+            hasMore: false
           },
           status: 200
         }
@@ -24,8 +24,8 @@ module Chatmeter
         request_params, mock_data = parse_stub_params(params)
         {
           body: {
-            "id": "23232",
-            "accountName": request_params[:query][:accountName]
+            id: "23232",
+            accountName: request_params[:query][:accountName]
           },
           status: 200
         }
