@@ -55,7 +55,13 @@ module Chatmeter
       begin
         response = @connection.request(params, &block)
       rescue Excon::Errors::HTTPStatusError => error
-        puts error
+        klass = case error.response.status
+        when 400 then Chatmeter::API::Errors::BadRequest
+        when 401 then Chatmeter::API::Errors::Unauthorized
+        when 403 then Chatmeter::API::Errors::Forbidden
+        when 404 then Chatmeter::API::Errors::NotFound
+        when /50./ then Chatmeter::API::Errors::RequestFailed
+        else Chatmeter::API::Errors::ErrorWithResponse
       end
 
       if response.body && !response.body.empty?
