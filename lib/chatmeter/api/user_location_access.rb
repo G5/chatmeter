@@ -11,12 +11,14 @@ module Chatmeter
     end
 
     # POST /users/{user_id}/locations
-    def add_location_to_user(user_id, params)
+    def add_location_to_user(user_id, location_ids)
       request(
-        expects:  200,
-        method:   :post,
-        path:     "/users/#{user_id}/locations",
-        query:    params
+        expects: 200,
+        method: :post,
+        path: "/users/#{user_id}/locations",
+        body: {
+          "locationIds": location_ids
+        }.to_json
       )
     end
 

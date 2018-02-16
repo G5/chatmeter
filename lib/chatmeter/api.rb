@@ -62,6 +62,7 @@ module Chatmeter
         when 404 then Chatmeter::API::Errors::NotFound
         when /50./ then Chatmeter::API::Errors::RequestFailed
         else Chatmeter::API::Errors::ErrorWithResponse
+        end
       end
 
       if response.body && !response.body.empty?
