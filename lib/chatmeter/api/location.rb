@@ -12,21 +12,30 @@ module Chatmeter
       end
 
       # GET /locations/externalId/{resellerLocationId}
-      def get_locations_by_reseller_location_id(reseller_location_id, params={})
+      def get_locations_by_reseller_location_id(reseller_location_id)
         request(
           expects: 200,
           method:  :get,
-          path:    '/locations/externalId/#{reseller_location_id}',
-          params:  params
+          path:    '/locations/externalId/#{reseller_location_id}'
         )
       end
 
-      # GET /locations/externalId/{resellerLocationId}
+      # POST /locations
       def add_new_location(fields)
         request(
           expects: 200,
           method:  :post,
           path:    '/locations',
+          body:    fields.to_json
+        )
+      end
+
+      # PUT /locations/{locationId}
+      def update_location(location_id, fields)
+        request(
+          expects: 200,
+          method:  :put,
+          path:    '/locations/#{location_id}',
           body:    fields.to_json
         )
       end
