@@ -77,5 +77,10 @@ RSpec.describe Chatmeter::API do
       expect(group).to eq ""
     end
 
+    it "should return valid response for #restore_location" do
+      group = chatmeter.restore_location([100287409, 100287543])
+      expect(group).to eq ""
+    end
+
   end
 end

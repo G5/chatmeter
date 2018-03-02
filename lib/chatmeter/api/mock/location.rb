@@ -261,6 +261,14 @@ module Chatmeter
         }
       end
 
+      # stub PUT /locations/restore
+      Excon.stub(expects: 200, method: :put, path: %r{^/v5/locations/restore}) do |params|
+        request_params, mock_data = parse_stub_params(params)
+        {
+          status: 200
+        }
+      end
+
     end
   end
 end

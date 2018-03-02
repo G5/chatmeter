@@ -40,12 +40,22 @@ module Chatmeter
         )
       end
 
-      # DELETE /locations/{location_id}
+      # DELETE /locations/{locationId}
       def delete_location(location_id)
         request(
           expects:  200,
           method:   :delete,
           path:     "/locations/#{location_id}"
+        )
+      end
+
+      # PUT /locations/restore (array)
+      def restore_location(location_ids)
+        request(
+          expects: 200,
+          method:  :put,
+          path:    '/locations/restore',
+          body:    location_ids.to_json
         )
       end
 
