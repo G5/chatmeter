@@ -253,6 +253,14 @@ module Chatmeter
         }
       end
 
+      # stub DELETE /locations/{location_id}
+      Excon.stub(expects: 200, method: :delete, path: %r{^/v5/locations/([^/]+)$}) do |params|
+        request_params, mock_data = parse_stub_params(params)
+        {
+          status: 200
+        }
+      end
+
     end
   end
 end

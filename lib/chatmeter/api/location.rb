@@ -8,7 +8,7 @@ module Chatmeter
           method:  :get,
           path:    '/locations',
           params:  params
-        )
+        )[:locations]
       end
 
       # GET /locations/externalId/{resellerLocationId}
@@ -37,6 +37,15 @@ module Chatmeter
           method:  :put,
           path:    '/locations/#{location_id}',
           body:    fields.to_json
+        )
+      end
+
+      # DELETE /locations/{location_id}
+      def delete_location(location_id)
+        request(
+          expects:  200,
+          method:   :delete,
+          path:     "/locations/#{location_id}"
         )
       end
 
