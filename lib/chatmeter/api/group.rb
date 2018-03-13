@@ -49,12 +49,12 @@ module Chatmeter
       )
     end
 
-    # DELETE /groups/{group_id}
+    # DELETE /groups/{group_id}/locations
     def delete_group_locations(group_id)
       request(
         expects:  200,
         method:   :delete,
-        path:     "/groups/#{group_id}"
+        path:     "/groups/#{group_id}/locations"
       )
     end
 

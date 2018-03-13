@@ -5,6 +5,7 @@ require 'chatmeter/api/mock/user_group_access'
 require 'chatmeter/api/mock/user_location_access'
 require 'chatmeter/api/mock/login'
 require 'chatmeter/api/mock/location'
+require 'chatmeter/api/mock/review'
 require 'chatmeter/api/mock/account'
 
 module Chatmeter
