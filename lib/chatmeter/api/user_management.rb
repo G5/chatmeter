@@ -3,13 +3,12 @@ module Chatmeter
 
     # GET /users
     def list_all_users(params={})
-      req = request(
+      request(
         expects: 200,
         method:  :get,
         path:    "/users",
         query:    params
-      )
-      req["users"]
+      )[:users]
     end
 
     # GET /user/{user_id}

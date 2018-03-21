@@ -18,7 +18,7 @@ module Chatmeter
         method:  :get,
         path:    "/reviews",
         query:    params
-      )
+      )[:reviews]
     end
 
     # GET /reviews/{reviewId}

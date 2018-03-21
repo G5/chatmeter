@@ -7,6 +7,7 @@ require "multi_json"
 require 'json'
 
 require "chatmeter/version"
+require "chatmeter/api/errors"
 require "chatmeter/api/user_management"
 require "chatmeter/api/single_signon"
 require "chatmeter/api/group"
@@ -44,7 +45,7 @@ module Chatmeter
         username = options.delete(:username)
         password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
-        @api_key = self.post_login(username, password)["token"]
+        @api_key = self.post_login(username, password)[:token]
       end
 
       @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: { Authorization: @api_key }, mock: options[:mock])
@@ -68,7 +69,7 @@ module Chatmeter
 
       if response.body && !response.body.empty?
         begin
-          response.body = MultiJson.load(response.body)
+          response.body = MultiJson.load(response.body, symbolize_keys: true)
         rescue
           if response.headers['Content-Type'] === 'application/json'
             raise
