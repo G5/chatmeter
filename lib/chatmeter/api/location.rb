@@ -8,7 +8,7 @@ module Chatmeter
           method:  :get,
           path:    '/locations',
           params:  params
-        )[:locations]
+        )
       end
 
       # GET /locations/externalId/{resellerLocationId}
