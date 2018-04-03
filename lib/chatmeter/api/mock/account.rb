@@ -25,7 +25,7 @@ module Chatmeter
         {
           body: {
             id: "23232",
-            accountName: request_params[:query][:accountName]
+            accountName: "Reseller 1"
           },
           status: 200
         }

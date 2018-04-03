@@ -16,7 +16,7 @@ module Chatmeter
           expects:  200,
           method:   :post,
           path:     "/accounts",
-          query:    params
+          body:     params.to_json
         )
       end
 
