@@ -48,7 +48,8 @@ module Chatmeter
         @api_key = self.post_login(username, password)[:token]
       end
 
-      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: { Authorization: @api_key }, mock: options[:mock])
+      headers = HEADERS.merge({ Authorization: @api_key })
+      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: headers, mock: options[:mock])
     end
 
     def request(params, &block)
