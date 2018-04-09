@@ -16,7 +16,7 @@ module Chatmeter
         request(
           expects: 200,
           method:  :get,
-          path:    '/locations/externalId/#{reseller_location_id}'
+          path:    "/locations/externalId/#{reseller_location_id}"
         )
       end
 
@@ -35,7 +35,7 @@ module Chatmeter
         request(
           expects: 200,
           method:  :put,
-          path:    '/locations/#{location_id}',
+          path:    "/locations/#{location_id}",
           body:    fields.to_json
         )
       end
