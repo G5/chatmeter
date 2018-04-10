@@ -6,8 +6,8 @@ RSpec.describe Chatmeter::API do
     let(:chatmeter) { Chatmeter::API.new(username: '123456@example.com', password: 'pw12345', mock: true) }
 
     it "should return valid response for #get_all_locations" do
-      locations = chatmeter.get_all_locations()
-      expect(locations.length).to eq 1
+      locations = chatmeter.get_all_locations
+      expect(locations[:locations].length).to eq 1
     end
 
     it "should return valid response for #get_locations_by_reseller_location_id" do

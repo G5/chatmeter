@@ -16,7 +16,7 @@ module Chatmeter
         expects:  200,
         method:   :post,
         path:     "/groups",
-        query:    params
+        body:    params.to_json
       )
     end
 
@@ -26,7 +26,7 @@ module Chatmeter
         expects:  200,
         method:   :put,
         path:     "/groups/#{group_id}",
-        query:    params
+        body:     params.to_json
       )
     end
 
@@ -45,7 +45,7 @@ module Chatmeter
         expects:  200,
         method:   :post,
         path:     "/groups/#{group_id}/locations",
-        query:    params
+        body:     params.to_json
       )
     end
 

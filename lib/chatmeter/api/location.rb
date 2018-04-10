@@ -7,8 +7,8 @@ module Chatmeter
           expects: 200,
           method:  :get,
           path:    '/locations',
-          query:   params
-        )[:locations]
+          params:  params
+        )
       end
 
       # GET /locations/externalId/{resellerLocationId}
