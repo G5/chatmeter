@@ -16,7 +16,7 @@ module Chatmeter
         expects:  200,
         method:   :post,
         path:     "/users/#{user_id}/groups",
-        query:    params
+        body:    params.to_json
       )
     end
 

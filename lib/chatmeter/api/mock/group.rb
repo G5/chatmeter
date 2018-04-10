@@ -22,12 +22,13 @@ module Chatmeter
 
       # stub POST /groups
       Excon.stub(expects: 200, method: :post, path: '/v5/groups') do |params|
-        request_params, mock_data = parse_stub_params(params)
+        params = JSON.parse(params[:body])
+        
         {
           body: {
             "id": "406ab658-7f13-11e4-b116-123b93f75cba",
-            "accountId": request_params[:query][:accountId],
-            "groupName": request_params[:query][:groupName],
+            "accountId": params["accountId"],
+            "groupName": params["groupName"],
             "externalGroupId": "1x276bnh333"
           },
           status: 200
@@ -36,12 +37,12 @@ module Chatmeter
 
       # stub PUT /groups/{group_id}
       Excon.stub(expects: 200, method: :put, path: %r{^/v5/groups/([^/]+)$}) do |params|
-        request_params, mock_data = parse_stub_params(params)
+        params = JSON.parse(params[:body])
         {
           body: {
             "id": "406ab658-7f13-11e4-b116-123b93f75cba",
-            "accountId": request_params[:query][:accountId],
-            "groupName": request_params[:query][:groupName],
+            "accountId": params["accountId"],
+            "groupName": params["groupName"],
             "externalGroupId": "1x276bnh333"
           },
           status: 200

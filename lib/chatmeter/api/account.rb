@@ -1,6 +1,6 @@
 module Chatmeter
     class API
-
+      # GET /accounts
       def accounts(query={})
         request(
           expects: 200,

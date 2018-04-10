@@ -20,12 +20,12 @@ module Chatmeter
       end
 
       # stub POST /accounts
-      Excon.stub(expects: 200, method: :post, path: '/v5/accounts') do |params|
-        request_params, mock_data = parse_stub_params(params)
+      Excon.stub(expects: 200, method: :post, path: %r{^/v5/accounts}) do |params|
+        params = JSON.parse(params[:body])
         {
           body: {
             id: "23232",
-            accountName: "Reseller 1"
+            accountName: params["accountName"]
           },
           status: 200
         }
