@@ -7,7 +7,7 @@ module Chatmeter
           method:  :get,
           path:    '/accounts',
           query:    query
-        )
+        )[:accounts]
       end
 
       # POST /accounts

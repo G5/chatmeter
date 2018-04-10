@@ -6,7 +6,7 @@ RSpec.describe Chatmeter::API do
     let(:chatmeter) { Chatmeter::API.new(username: '123456@example.com', password: 'pw12345', mock: true) }
 
     it "should return valid response for #list_all_groups" do
-      group = chatmeter.list_all_groups[:groups]
+      group = chatmeter.list_all_groups
       expect(group.length).to eq 1
       expect(group.first[:id]).to eq "406ab658-7f13-11e4-b116-123b93f75cba"
       expect(group.first[:accountId]).to eq "232"
