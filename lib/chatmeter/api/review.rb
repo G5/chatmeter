@@ -2,7 +2,7 @@ module Chatmeter
   class API
 
     # GET /dashboard/reviewReport
-    def get_review_metrics(params)
+    def get_review_metrics(params={})
       request(
         expects: 200,
         method:  :get,
@@ -12,7 +12,7 @@ module Chatmeter
     end
 
     # GET /reviews
-    def get_all_reviews(params)
+    def get_all_reviews(params={})
       request(
         expects: 200,
         method:  :get,
@@ -41,7 +41,7 @@ module Chatmeter
     end
 
     # GET /reviews/reports/{ReportId}
-    def aggregate_reports(review_id, params)
+    def aggregate_reports(review_id, params={})
       request(
         expects: 200,
         method:  :get,

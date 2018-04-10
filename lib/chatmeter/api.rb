@@ -68,7 +68,7 @@ module Chatmeter
         else Chatmeter::API::Errors::ErrorWithResponse
         end
       end
-
+      
       if response.body && !response.body.empty?
         begin
           response.body = MultiJson.load(response.body, symbolize_keys: true)
