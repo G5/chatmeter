@@ -2,9 +2,8 @@ module Chatmeter
   class API
     module Mock
 
-      # stub GET /groups
+      # stub GET /locations
       Excon.stub(expects: 200, method: :get, path: '/v5/locations') do |params|
-        request_params, mock_data = parse_stub_params(params)
         {
           body: {
             "locations":[

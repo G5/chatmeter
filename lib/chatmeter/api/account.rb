@@ -1,6 +1,6 @@
 module Chatmeter
     class API
-
+      # GET /accounts
       def accounts(query={})
         request(
           expects: 200,
@@ -16,7 +16,7 @@ module Chatmeter
           expects:  200,
           method:   :post,
           path:     "/accounts",
-          query:    params
+          body:     params.to_json
         )
       end
 

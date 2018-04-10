@@ -47,7 +47,7 @@ module Chatmeter
         expects:  200,
         method:   :put,
         path:     "/users/#{user_id}/password",
-        query:    params
+        body:    params.to_json
       )
     end
 
@@ -67,7 +67,7 @@ module Chatmeter
         expects:  200,
         method:   :post,
         path:     "/users/#{user_id}/status",
-        query:    params
+        body:    params.to_json
       )
     end
 

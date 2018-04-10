@@ -7,7 +7,7 @@ RSpec.describe Chatmeter::API do
 
     it "should return valid response for #get_all_locations" do
       locations = chatmeter.get_all_locations
-      expect(locations.length).to eq 1
+      expect(locations[:locations].length).to eq 1
     end
 
     it "should return valid response for #get_locations_by_reseller_location_id" do
