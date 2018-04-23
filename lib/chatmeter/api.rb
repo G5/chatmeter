@@ -19,6 +19,7 @@ require "chatmeter/api/user_location_access"
 require "chatmeter/api/login"
 require "chatmeter/api/mock"
 require "chatmeter/api/errors"
+require "chatmeter/api/campaign"
 
 module Chatmeter
   class API
