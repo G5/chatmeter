@@ -6,7 +6,7 @@ module Chatmeter
       request(
         expects: 200,
         method:  :get,
-        path:    "/"
+        path:    "/reviewBuilder/campaign/get"
       )
     end
 
@@ -21,12 +21,11 @@ module Chatmeter
     end
 
     # GET /reviewBuilder/campaign/get/{campaignId}
-    def get_campaign(campaign_id)
+    def get_campaign_by_id(campaign_id)
       request(
         expects:  200,
-        method:   :put,
-        path:     "/reviewBuilder/campaign/get/#{campaign_id}",
-        body:     params.to_json
+        method:   :get,
+        path:     "/reviewBuilder/campaign/get/#{campaign_id}"
       )
 		end
 		
@@ -46,11 +45,12 @@ module Chatmeter
 				expects:  200,
 				method:   :get,
 				path:     "/reviewBuilder/campaign",
-				body:     params
+				params:     params
 			)
 		end
+
 		# DELETE /reviewBuilder/campaign/delete/{campaignId}
-		def search_campaign(campaign_id)
+		def delete_campaign(campaign_id)
 			request(
 				expects:  200,
 				method:   :delete,
