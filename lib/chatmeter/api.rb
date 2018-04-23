@@ -68,6 +68,10 @@ module Chatmeter
         when /50./ then Chatmeter::API::Errors::RequestFailed
         else Chatmeter::API::Errors::ErrorWithResponse
         end
+
+        reerror = klass.new(error.message, error.response)
+        reerror.set_backtrace(error.backtrace)
+        raise(reerror)
       end
       
       if response.body && !response.body.empty?
