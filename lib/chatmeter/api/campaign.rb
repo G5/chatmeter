@@ -40,12 +40,11 @@ module Chatmeter
 		end
 		
 		# GET /reviewBuilder/campaign
-		def search_campaign(params)
+		def search_campaign(params={})
 			request(
 				expects:  200,
 				method:   :get,
-				path:     "/reviewBuilder/campaign",
-				params:     params
+				path:     "/reviewBuilder/campaign?#{params.to_query}"
 			)
 		end
 
