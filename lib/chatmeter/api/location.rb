@@ -2,12 +2,12 @@ module Chatmeter
     class API
 
       # GET /locations
-      def get_all_locations(params={})
+      def get_all_locations(query={})
         request(
           expects: 200,
           method:  :get,
           path:    '/locations',
-          params:  params
+          query:  query
         )
       end
 
