@@ -59,7 +59,6 @@ module Chatmeter
       )
     end
 
-
     # POST /users
     def enable_user(user_id, params)
       request(
@@ -70,5 +69,21 @@ module Chatmeter
       )
     end
 
+    def add_sub_account(user_id, params)
+      request(
+        expects: 200,
+        method: :put,
+        path: "/users/#{user_id}/accounts",
+        body: params.to_json
+      )
+    end
+
+    def get_user_locations(user_id)
+      request(
+        expects: 200,
+        method: :get,
+        path: "/users/#{user_id}/locations"
+      )
+    end
   end
 end
