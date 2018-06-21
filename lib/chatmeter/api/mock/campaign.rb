@@ -92,7 +92,7 @@ module Chatmeter
           status: 200
         }
       end
-			
+
 			campaign_body = {
 				"name": "anotherCampaign",
 				"accountId": "56a184a6d4c61f5267b3f386",
@@ -121,11 +121,11 @@ module Chatmeter
       end
 
       # POST /reviewBuilder/campaign/create
-      Excon.stub(expects: 200, method: :post, path: '/v5/reviewBuilder/campaign/create') do |params|
+      Excon.stub(expects: 201, method: :post, path: '/v5/reviewBuilder/campaign/create') do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           body: campaign_body,
-          status: 200
+          status: 201
         }
       end
 
