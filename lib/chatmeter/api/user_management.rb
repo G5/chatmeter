@@ -59,7 +59,6 @@ module Chatmeter
       )
     end
 
-
     # POST /users
     def enable_user(user_id, params)
       request(
@@ -79,5 +78,12 @@ module Chatmeter
       )
     end
 
+    def get_user_locations(user_id)
+      request(
+        expects: 200,
+        method: :get,
+        path: "/users/#{user_id}/locations"
+      )
+    end
   end
 end
