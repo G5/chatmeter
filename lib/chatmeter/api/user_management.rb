@@ -70,5 +70,14 @@ module Chatmeter
       )
     end
 
+    def add_sub_account(user_id, params)
+      request(
+        expects: 200,
+        method: :put,
+        path: "/users/#{user_id}/accounts",
+        body: params.to_json
+      )
+    end
+
   end
 end

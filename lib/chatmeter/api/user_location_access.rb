@@ -23,11 +23,12 @@ module Chatmeter
     end
 
     # DELETE /users/{user_id}/locations?locationIds={location_ids}
-    def remove_location_access(user_id, location_id)
+    def remove_location_access(user_id, params)
       request(
         expects:  200,
-        method:   :delete,
-        path:     "/users/#{user_id}/locations?locationIds=#{location_id}"
+        method:   :post,
+        path:     "/users/#{user_id}/locations/delete",
+        body: params.to_json
       )
     end
 
