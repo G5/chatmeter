@@ -20,5 +20,17 @@ module Chatmeter
         )
       end
 
+      # GET account's groups
+      def get_account_groups(account_id)
+        request(
+          expects: 200,
+          method:  :get,
+          path:    "/groups",
+          query: {
+            accountId: account_id
+          }
+        )[:groups]
+      end
+
     end
   end
