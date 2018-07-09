@@ -50,11 +50,11 @@ module Chatmeter
     end
 
     # DELETE /groups/{group_id}/locations
-    def delete_group_locations(group_id)
+    def delete_group_locations(group_id,locationsIds)
       request(
         expects:  200,
         method:   :delete,
-        path:     "/groups/#{group_id}/locations"
+        path:     "/groups/#{group_id}/locations??locationIds=#{lcationsIds.join(',')}"
       )
     end
 
