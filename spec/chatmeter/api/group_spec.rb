@@ -46,7 +46,7 @@ RSpec.describe Chatmeter::API do
     end
 
     it "should return valid response for #delete_group" do
-      group = chatmeter.delete_group_locations('23232')
+      group = chatmeter.delete_group_locations('23232',[2233])
       expect(group).to eq ""
     end
 

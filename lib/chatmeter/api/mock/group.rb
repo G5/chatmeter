@@ -23,7 +23,7 @@ module Chatmeter
       # stub POST /groups
       Excon.stub(expects: 200, method: :post, path: '/v5/groups') do |params|
         params = JSON.parse(params[:body])
-        
+
         {
           body: {
             "id": "406ab658-7f13-11e4-b116-123b93f75cba",
@@ -65,8 +65,8 @@ module Chatmeter
         }
       end
 
-      # stub DELETE /groups/{groups_id}/locations
-      Excon.stub(expects: 200, method: :delete, path: %r{^/v5/groups/([^/]+)/locations$}) do |params|
+      # stub DELETE /groups/{groups_id}/locations?locationIds=
+      Excon.stub(expects: 200, method: :delete, path: %r{^/v5/groups/([^/]+)/locations\?locationIds=\w+}) do |params|
         request_params, mock_data = parse_stub_params(params)
         {
           status: 200

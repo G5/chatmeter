@@ -54,7 +54,7 @@ module Chatmeter
       request(
         expects:  200,
         method:   :delete,
-        path:     "/groups/#{group_id}/locations??locationIds=#{lcationsIds.join(',')}"
+        path:     "/groups/#{group_id}/locations?locationIds=#{locationsIds.join(',')}"
       )
     end
 
