@@ -16,5 +16,10 @@ RSpec.describe Chatmeter::API do
       expect(account[:accountName]).to eq "Reseller 1"
     end
 
+    it "should return valid response for #get_accounts_for_user" do
+      accounts = chatmeter.get_accounts_for_user("UserId_1")
+      expect(accounts).to include "232323"
+    end
+
   end
 end
