@@ -1,5 +1,15 @@
 module Chatmeter
     class API
+
+      # GET /accounts for user
+      def get_accounts_for_user(user_id)
+        request(
+          expects: 200,
+          method:  :get,
+          path:    "/accounts/forUser/#{user_id}"
+        )[:accountIds]
+      end
+
       # GET /accounts
       def accounts(query={})
         request(
