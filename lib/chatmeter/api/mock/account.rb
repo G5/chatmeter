@@ -19,6 +19,17 @@ module Chatmeter
         }
       end
 
+      # stub GET /accounts
+      Excon.stub(expects: 200, method: :get, path: %r{\/v5\/accounts\/forUser\/\w*$}) do |params|
+        request_params, mock_data = parse_stub_params(params)
+        {
+          body: {
+            accountIds: [ "232323" ]
+          },
+          status: 200
+        }
+      end
+
       # stub POST /accounts
       Excon.stub(expects: 200, method: :post, path: %r{^/v5/accounts}) do |params|
         params = JSON.parse(params[:body])
