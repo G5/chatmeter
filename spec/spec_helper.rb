@@ -1,5 +1,8 @@
 require "bundler/setup"
 require "chatmeter"
+require 'factory_bot'
+require 'g5_updatable/rspec'
+require 'g5_authenticatable/rspec'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

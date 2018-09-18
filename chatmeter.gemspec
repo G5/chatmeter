@@ -34,7 +34,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency 'factory_bot_rails'
 
+  #spec.add_dependency 'g5_authenticatable', '1.1.1'
+  spec.add_dependency 'g5_updatable', '~> 0.30.0'
   spec.add_dependency "multi_json"
   spec.add_dependency "excon"
   spec.add_dependency "json"
