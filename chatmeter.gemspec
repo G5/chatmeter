@@ -6,18 +6,18 @@ require "chatmeter/version"
 Gem::Specification.new do |spec|
   spec.name          = "chatmeter"
   spec.version       = Chatmeter::VERSION
-  spec.authors       = ["Levi Brown"]
+  spec.authors       = ["Levi Brown", "Kyle Rose", "Pablo Rodriguez"]
   spec.email         = ["levi.brown@getg5.com"]
 
   spec.summary       = %q{A ruby wrapper for the chatmeter API.}
   spec.description   = %q{}
-  spec.homepage      = "https://github.com/g5search/chatmeter"
+  spec.homepage      = "https://github.com/G5/chatmeter"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
