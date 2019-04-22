@@ -18,6 +18,7 @@ require "chatmeter/api/user_group_access"
 require "chatmeter/api/user_location_access"
 require "chatmeter/api/login"
 require "chatmeter/api/campaign"
+require "chatmeter/api/contact"
 require "chatmeter/api/mock"
 require "chatmeter/api/errors"
 

@@ -93,22 +93,22 @@ module Chatmeter
         }
       end
 
-			campaign_body = {
-				"name": "anotherCampaign",
-				"accountId": "56a184a6d4c61f5267b3f386",
-				"isActive": false,
-				"deliveryMethods": [
-					{
-						"deliveryDelay": 0,
-						"fromAddress": "support@chatmeter.com",
-						"subject": "Please tell us your thoughts!",
-						"templateId": "5748e778d4c680e898e308a9",
-						"type": "email",
-						"message": "Please tell us your thoughts! \n {{ formUrl }}"
-					}
-				],
-				"formId": "574ddfdcd4c6e2402ff37e0c"
-			}
+      campaign_body = {
+        "name": "anotherCampaign",
+        "accountId": "56a184a6d4c61f5267b3f386",
+        "isActive": false,
+        "deliveryMethods": [
+          {
+            "deliveryDelay": 0,
+            "fromAddress": "support@chatmeter.com",
+            "subject": "Please tell us your thoughts!",
+            "templateId": "5748e778d4c680e898e308a9",
+            "type": "email",
+            "message": "Please tell us your thoughts! \n {{ formUrl }}"
+          }
+        ],
+        "formId": "574ddfdcd4c6e2402ff37e0c"
+      }
 
 
       # stub GET /reviewBuilder/campaign/get/#{campaign_id}
