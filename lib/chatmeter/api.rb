@@ -74,7 +74,7 @@ module Chatmeter
         reerror.set_backtrace(error.backtrace)
         raise(reerror)
       end
-      
+
       if response.body && !response.body.empty?
         begin
           response.body = MultiJson.load(response.body, symbolize_keys: true)

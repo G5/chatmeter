@@ -11,40 +11,22 @@ module Chatmeter
     end
 
     # GET /reviewBuilder/campaign/contact/get/{contactId}
-    # def get_contact_by_id(contact_id)
-      # request(
-        # expects:  200,
-        # method:   :get,
-        # path:     "/reviewBuilder/contact/get/#{contact_id}"
-      # )
-    # end
+    def get_contact_by_id(contact_id)
+      request(
+        expects:  200,
+        method:   :get,
+        path:     "/reviewBuilder/campaign/contact/get/#{contact_id}"
+      )
+    end
 
     # PUT reviewBuilder/campaign/contact/update/{contactId}
-    # def update_contact(contact_id, params)
-      # request(
-        # expects:  200,
-        # method:   :get,
-        # path:     "/reviewBuilder/contact/update/#{contact_id}",
-        # body: params.to_json
-      # )
-    # end
-
-    # GET /reviewBuilder/campaign/contact
-    # def search_contact(params={})
-      # request(
-        # expects:  200,
-        # method:   :get,
-        # path:     "/reviewBuilder/campaign/contact?#{params.to_query}"
-      # )
-    # end
-
-    # DELETE /reviewBuilder/campaign/contact/delete/{List(contactIds)}
-    # def delete_contact(contact_ids)
-      # request(
-        # expects:  200,
-        # method:   :delete,
-        # path:     "/reviewBuilder/campaign/contact/delete/#{contact_id}"
-      # )
-    # end
-   end
+    def update_contact(contact_id, params)
+      request(
+        expects:  200,
+        method:   :put,
+        path:     "/reviewBuilder/campaign/contact/update/#{contact_id}",
+        body:     params.to_json
+      )
+    end
+  end
 end
