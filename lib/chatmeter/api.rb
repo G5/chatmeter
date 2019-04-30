@@ -18,6 +18,7 @@ require "chatmeter/api/user_group_access"
 require "chatmeter/api/user_location_access"
 require "chatmeter/api/login"
 require "chatmeter/api/campaign"
+require "chatmeter/api/competitors"
 require "chatmeter/api/mock"
 require "chatmeter/api/errors"
 
@@ -73,7 +74,7 @@ module Chatmeter
         reerror.set_backtrace(error.backtrace)
         raise(reerror)
       end
-      
+
       if response.body && !response.body.empty?
         begin
           response.body = MultiJson.load(response.body, symbolize_keys: true)

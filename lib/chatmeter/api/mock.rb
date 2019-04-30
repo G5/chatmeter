@@ -8,6 +8,7 @@ require 'chatmeter/api/mock/location'
 require 'chatmeter/api/mock/review'
 require 'chatmeter/api/mock/account'
 require 'chatmeter/api/mock/campaign'
+require 'chatmeter/api/mock/competitors'
 
 module Chatmeter
   class API
