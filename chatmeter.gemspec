@@ -6,7 +6,7 @@ require "chatmeter/version"
 Gem::Specification.new do |spec|
   spec.name          = "chatmeter"
   spec.version       = Chatmeter::VERSION
-  spec.authors       = ["Levi Brown", "Kyle Rose", "Pablo Rodriguez"]
+  spec.authors       = ["Levi Brown", "Kyle Rose", "Pablo Rodriguez", "Kirk Stennett"]
   spec.email         = ["levi.brown@getg5.com"]
 
   spec.summary       = %q{A ruby wrapper for the chatmeter API.}
