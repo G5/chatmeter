@@ -30,6 +30,16 @@ module Chatmeter
         )
       end
 
+      # POST /account/accountID
+      def update_account(accountId, params)
+        request(
+          expects:  200,
+          method:   :put,
+          path:     "/accounts/#{accountId}",
+          body:     params.to_json
+        )
+      end
+
       # GET account's groups
       def get_account_groups(account_id)
         request(
