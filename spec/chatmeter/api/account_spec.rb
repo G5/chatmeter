@@ -21,7 +21,7 @@ RSpec.describe Chatmeter::API do
       expect(accounts).to include "232323"
     end
 
-    it "shold return valid response for #update_account" do
+    it "should return valid response for #update_account" do
       accounts = chatmeter.update_account("232323",{accountName: "New Account Name", clientAccountId: "new-client-account-id"})
       expect(accounts[:id]).to eq "232323"
       expect(accounts[:accountName]).to eq "New Account Name"
