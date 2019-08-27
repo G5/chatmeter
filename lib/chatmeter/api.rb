@@ -45,7 +45,7 @@ module Chatmeter
       options = OPTIONS.merge(options)
       options = options.merge(headers: HEADERS)
 
-      if !@api_key && options.has_key?(:username) && options.has_key?(:password)
+      if !@api_key && options.has_key?(:username) && options.has_key?(:password) && options[:mock] == false
         username = options.delete(:username)
         password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
