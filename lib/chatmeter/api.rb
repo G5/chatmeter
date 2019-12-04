@@ -38,7 +38,8 @@ module Chatmeter
       username:    ENV['CHATMETER_ADMIN_USER'],
       password:    ENV['CHATMETER_ADMIN_PASSWORD'],
       scheme:      'https',
-      api_version: 'v5'
+      api_version: 'v5',
+      mock: false
     }
 
     def initialize(options={})

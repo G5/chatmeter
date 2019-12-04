@@ -53,7 +53,7 @@ module Chatmeter
       request(
         expects:  200,
         method:   :delete,
-        path:     "/reviewBuilder/campaign/delete/#{campaign_id}"
+        path:     "/reviewBuilder/campaign/delete/#{campaign_id}?deleteReviews=true"
       )
     end
   end
