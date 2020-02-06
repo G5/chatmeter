@@ -18,6 +18,7 @@ module Chatmeter
       class Unauthorized < ErrorWithResponse; end
       class Forbidden < ErrorWithResponse; end
       class InternalServerError < ErrorWithResponse; end
+      class RequestFailed < ErrorWithResponse; end
     end
   end
 end
