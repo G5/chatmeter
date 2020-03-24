@@ -10,7 +10,7 @@ require 'chatmeter/api/mock/account'
 require 'chatmeter/api/mock/campaign'
 require 'chatmeter/api/mock/competitors'
 require 'chatmeter/api/mock/listings'
-
+require 'chatmeter/api/mock/errors'
 module Chatmeter
   class API
     module Mock

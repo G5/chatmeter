@@ -38,14 +38,15 @@ module Chatmeter
       username:    ENV['CHATMETER_ADMIN_USER'],
       password:    ENV['CHATMETER_ADMIN_PASSWORD'],
       scheme:      'https',
-      api_version: 'v5'
+      api_version: 'v5',
+      mock: false
     }
 
     def initialize(options={})
       options = OPTIONS.merge(options)
       options = options.merge(headers: HEADERS)
 
-      if !@api_key && options.has_key?(:username) && options.has_key?(:password)
+      if !@api_key && options.has_key?(:username) && options.has_key?(:password) && options[:mock] == false
         username = options.delete(:username)
         password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
@@ -62,11 +63,11 @@ module Chatmeter
       begin
         response = @connection.request(params, &block)
       rescue Excon::Errors::HTTPStatusError => error
-        klass = case error.response.status
-        when 400 then Chatmeter::API::Errors::BadRequest
-        when 401 then Chatmeter::API::Errors::Unauthorized
-        when 403 then Chatmeter::API::Errors::Forbidden
-        when 404 then Chatmeter::API::Errors::NotFound
+        klass = case error.response.status.to_s
+        when '400' then Chatmeter::API::Errors::BadRequest
+        when '401' then Chatmeter::API::Errors::Unauthorized
+        when '403' then Chatmeter::API::Errors::Forbidden
+        when '404' then Chatmeter::API::Errors::NotFound
         when /50./ then Chatmeter::API::Errors::RequestFailed
         else Chatmeter::API::Errors::ErrorWithResponse
         end
