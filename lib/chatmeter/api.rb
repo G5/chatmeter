@@ -47,14 +47,17 @@ module Chatmeter
       options = options.merge(headers: HEADERS)
 
       if !@api_key && options.has_key?(:username) && options.has_key?(:password) && options[:mock] == false
-        username = options.delete(:username)
-        password = options.delete(:password)
+        @username = options.delete(:username)
+        @password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
-        @api_key = self.post_login(username, password)[:token]
+        post_login
       end
+      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: @headers, mock: options[:mock])
+    end
 
-      headers = HEADERS.merge({ Authorization: @api_key })
-      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: headers, mock: options[:mock])
+    def get_api_token
+      api_key = self.post_login(@username, @password)[:token]
+      @headers = HEADERS.merge({ Authorization: api_key })
     end
 
     def request(params, &block)
@@ -65,11 +68,15 @@ module Chatmeter
       rescue Excon::Errors::HTTPStatusError => error
         klass = case error.response.status.to_s
         when '400' then Chatmeter::API::Errors::BadRequest
-        when '401' then Chatmeter::API::Errors::Unauthorized
         when '403' then Chatmeter::API::Errors::Forbidden
         when '404' then Chatmeter::API::Errors::NotFound
         when /50./ then Chatmeter::API::Errors::RequestFailed
         else Chatmeter::API::Errors::ErrorWithResponse
+        end
+
+        if error.response.status == 401
+          post_login
+          request(params, &block)
         end
 
         reerror = klass.new(error.message, error.response)
