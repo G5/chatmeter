@@ -50,7 +50,7 @@ module Chatmeter
         @username = options.delete(:username)
         @password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
-        post_login
+        get_api_token
       end
       @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: @headers, mock: options[:mock])
     end
@@ -75,7 +75,7 @@ module Chatmeter
         end
 
         if error.response.status == 401
-          post_login
+          get_api_token
           request(params, &block)
         end
 
