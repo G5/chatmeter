@@ -41,12 +41,14 @@ module Chatmeter
       api_version: 'v5',
       mock: false
     }
+    attr_accessor :api_key
 
     def initialize(options={})
       options = OPTIONS.merge(options)
       options = options.merge(headers: HEADERS)
+      @headers = {}
 
-      if !@api_key && options.has_key?(:username) && options.has_key?(:password) && options[:mock] == false
+      if !api_key && options.has_key?(:username) && options.has_key?(:password) && options[:mock] == false
         @username = options.delete(:username)
         @password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
@@ -56,13 +58,13 @@ module Chatmeter
     end
 
     def get_api_token
-      api_key = self.post_login(@username, @password)[:token]
+      self.api_key = post_login(@username, @password)[:token]
       @headers = HEADERS.merge({ Authorization: api_key })
     end
 
     def request(params, &block)
+      original_path = params[:path]
       params[:path] = "/#{OPTIONS[:api_version]}#{params[:path]}"
-
       begin
         response = @connection.request(params, &block)
       rescue Excon::Errors::HTTPStatusError => error
@@ -76,27 +78,30 @@ module Chatmeter
 
         if error.response.status == 401
           get_api_token
-          request(params, &block)
+          params[:path] = original_path
+          return request(params, &block)
+        else
+          reerror = klass.new(error.message, error.response)
+          reerror.set_backtrace(error.backtrace)
+          raise(reerror)
         end
 
-        reerror = klass.new(error.message, error.response)
-        reerror.set_backtrace(error.backtrace)
-        raise(reerror)
       end
 
       if response.body && !response.body.empty?
         begin
-          response.body = MultiJson.load(response.body, symbolize_keys: true)
+          response_body = MultiJson.load(response.body, symbolize_keys: true)
         rescue
           if response.headers['Content-Type'] === 'application/json'
             raise
           end
+          response_body = response.body
           # leave non-JSON body as is
         end
       end
 
       @connection.reset
-      response.body || ""
+      response_body || ""
     end
   end
 end
