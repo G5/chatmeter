@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency 'pry-rails'
   spec.add_development_dependency 'pry-byebug'
+  spec.add_development_dependency 'guard-rspec'
   spec.add_dependency "multi_json"
   spec.add_dependency "excon"
   spec.add_dependency "json"
