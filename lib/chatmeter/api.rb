@@ -70,19 +70,19 @@ module Chatmeter
       rescue Excon::Errors::HTTPStatusError => error
         klass = case error.response.status.to_s
         when '400' then Chatmeter::API::Errors::BadRequest
+        when '401' then Chatmeter::API::Errors::Unauthorized
         when '403' then Chatmeter::API::Errors::Forbidden
         when '404' then Chatmeter::API::Errors::NotFound
         when /50./ then Chatmeter::API::Errors::RequestFailed
         else Chatmeter::API::Errors::ErrorWithResponse
         end
 
-        if error.response.status == 401
+        if klass == Chatmeter::API::Errors::Unauthorized
           get_api_token
           params[:path] = original_path
           return request(params, &block)
         else
-          reerror = klass.new(error.message, error.response)
-          reerror.set_backtrace(error.backtrace)
+          reerror = klass.new(error.message, error.response, error.backtrace)
           raise(reerror)
         end
 
