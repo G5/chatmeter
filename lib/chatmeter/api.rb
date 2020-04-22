@@ -41,25 +41,30 @@ module Chatmeter
       api_version: 'v5',
       mock: false
     }
+    attr_accessor :api_key
 
     def initialize(options={})
       options = OPTIONS.merge(options)
       options = options.merge(headers: HEADERS)
+      @headers = {}
 
-      if !@api_key && options.has_key?(:username) && options.has_key?(:password) && options[:mock] == false
-        username = options.delete(:username)
-        password = options.delete(:password)
+      if !api_key && options.has_key?(:username) && options.has_key?(:password) && options[:mock] == false
+        @username = options.delete(:username)
+        @password = options.delete(:password)
         @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", options)
-        @api_key = self.post_login(username, password)[:token]
+        get_api_token
       end
+      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: @headers, mock: options[:mock])
+    end
 
-      headers = HEADERS.merge({ Authorization: @api_key })
-      @connection = Excon.new("#{options[:scheme]}://#{options[:host]}", headers: headers, mock: options[:mock])
+    def get_api_token
+      self.api_key = post_login(@username, @password)[:token]
+      @headers = HEADERS.merge({ Authorization: api_key })
     end
 
     def request(params, &block)
+      original_path = params[:path]
       params[:path] = "/#{OPTIONS[:api_version]}#{params[:path]}"
-
       begin
         response = @connection.request(params, &block)
       rescue Excon::Errors::HTTPStatusError => error
@@ -72,24 +77,31 @@ module Chatmeter
         else Chatmeter::API::Errors::ErrorWithResponse
         end
 
-        reerror = klass.new(error.message, error.response)
-        reerror.set_backtrace(error.backtrace)
-        raise(reerror)
+        if klass == Chatmeter::API::Errors::Unauthorized
+          get_api_token
+          params[:path] = original_path
+          return request(params, &block)
+        else
+          reerror = klass.new(error.message, error.response, error.backtrace)
+          raise(reerror)
+        end
+
       end
 
       if response.body && !response.body.empty?
         begin
-          response.body = MultiJson.load(response.body, symbolize_keys: true)
+          response_body = MultiJson.load(response.body, symbolize_keys: true)
         rescue
           if response.headers['Content-Type'] === 'application/json'
             raise
           end
+          response_body = response.body
           # leave non-JSON body as is
         end
       end
 
       @connection.reset
-      response.body || ""
+      response_body || ""
     end
   end
 end

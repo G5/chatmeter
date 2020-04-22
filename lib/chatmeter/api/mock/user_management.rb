@@ -64,16 +64,16 @@ module Chatmeter
 
       # stub PUT /users/{user_id}
       Excon.stub(expects: 200, method: :put, path: %r{^/v5/users/([^/]+)$}) do |params|
-        request_params, mock_data = parse_stub_params(params)
+        request_params = JSON.parse(params[:body])
         {
           body: {
-            "accountId": request_params[:body]["accountId"],
-            "username": request_params[:body]["username"],
-            "email": request_params[:body]["email"],
-            "phoneNumber": request_params[:body]["phoneNumber"],
-            "firstName": request_params[:body]["firstName"],
-            "lastName": request_params[:body]["lastName"],
-            "userType": request_params[:body]["userType"]
+            "accountId": request_params["accountId"],
+            "username": request_params["username"],
+            "email": request_params["email"],
+            "phoneNumber": request_params["phoneNumber"],
+            "firstName": request_params["firstName"],
+            "lastName": request_params["lastName"],
+            "userType": request_params["userType"]
           },
           status: 200
         }

@@ -6,9 +6,10 @@ module Chatmeter
       class ErrorWithResponse < Error
         attr_reader :response
 
-        def initialize(message, response)
+        def initialize(message, response, backtrace)
           message = message << "\nbody: #{response.body.inspect}"
           super message
+          set_backtrace(backtrace)
           @response = response
         end
       end
