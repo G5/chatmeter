@@ -22,6 +22,8 @@ require "chatmeter/api/competitors"
 require "chatmeter/api/listings"
 require "chatmeter/api/mock"
 require "chatmeter/api/errors"
+require "chatmeter/api/email"
+require "chatmeter/api/form"
 
 module Chatmeter
   class API
