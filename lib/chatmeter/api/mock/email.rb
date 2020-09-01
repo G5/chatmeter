@@ -35,19 +35,6 @@ module Chatmeter
           status: 201
         }
       end
-
-
-      # # POST /reviewBuilder/campaign/create
-      # Excon.stub(expects: 201, method: :post, path: '/v5/reviewBuilder/campaign/create') do |params|
-      #   request_params, mock_data = parse_stub_params(params)
-      #   {
-      #     body: campaign_body,
-      #     status: 201
-      #   }
-      # end
-
-
-
     end
   end
 end
