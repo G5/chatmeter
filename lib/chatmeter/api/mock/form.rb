@@ -1,7 +1,7 @@
 module Chatmeter
   class API
     module Mock
-			form_response_body = {
+      form_response_body = {
         "template": "<html>Form Template</html>",
         "accountId": "5eab44b50fc2a21c6065ebf2",
         "deleted": false,

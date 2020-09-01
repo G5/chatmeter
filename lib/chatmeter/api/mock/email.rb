@@ -1,7 +1,7 @@
 module Chatmeter
   class API
     module Mock
-			email_response_body = {
+      email_response_body = {
         "templateType": "email",
         "accountId": "5a56bc4d01f0c9b909f3a82c",
         "deleted": false,
