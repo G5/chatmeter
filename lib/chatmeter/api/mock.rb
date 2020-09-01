@@ -11,6 +11,8 @@ require 'chatmeter/api/mock/campaign'
 require 'chatmeter/api/mock/competitors'
 require 'chatmeter/api/mock/listings'
 require 'chatmeter/api/mock/errors'
+require 'chatmeter/api/mock/email'
+require 'chatmeter/api/mock/form'
 module Chatmeter
   class API
     module Mock
