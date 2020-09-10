@@ -92,7 +92,8 @@ module Chatmeter
 
       if response.body && !response.body.empty?
         begin
-          response_body = MultiJson.load(response.body, symbolize_keys: true)
+          response_body_json = gunzip_response_body(response)
+          response_body = MultiJson.load(response_body_json, symbolize_keys: true)
         rescue
           if response.headers['Content-Type'] === 'application/json'
             raise
@@ -104,6 +105,17 @@ module Chatmeter
 
       @connection.reset
       response_body || ""
+    end
+
+    # Chatmeter has started to gzip some (but not all) response bodies. So, now we need to deal with that too.
+    def gunzip_response_body(response)
+      if response.headers['Content-Encoding'] == 'gzip'
+        sio = StringIO.new( response.body )
+        gz = Zlib::GzipReader.new( sio )
+        gz.read()
+      else
+        response.body
+      end
     end
   end
 end
