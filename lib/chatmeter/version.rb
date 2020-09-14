@@ -1,3 +1,3 @@
 module Chatmeter
-  VERSION = "1.3.6-1"
+  VERSION = "1.3.6"
 end
