@@ -29,7 +29,6 @@ module Chatmeter
   class API
 
     HEADERS = {
-      'Accept-Encoding': 'gzip',
       'Accept':          'application/json',
       'Content-Type':    'application/json'
     }
