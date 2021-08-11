@@ -48,7 +48,6 @@ module Chatmeter
       # stub POST /reviewBuilder/emailTemplate/{templateId}
       Excon.stub(expects: 200, method: :post, path: %r{^/v5/reviewBuilder/emailTemplate/([^/]+)$}) do |params|
         params = JSON.parse(params[:body])
-
         {
           body: 
           {  

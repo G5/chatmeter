@@ -31,7 +31,7 @@ RSpec.describe Chatmeter::API do
       expect(email[:name]).to eq "GMB Reviews Email Template - Karl Hungus Productions"
     end
 
-    it "should return valid response for #update_account" do
+    it "should return valid response for #update_email_template" do
       email = chatmeter.update_email_template("5f4e59e15d962523aaf562a1", update_params)
 
       expect(email[:templateType]).to eq "email"
