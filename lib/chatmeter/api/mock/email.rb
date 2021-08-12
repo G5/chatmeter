@@ -35,6 +35,33 @@ module Chatmeter
           status: 201
         }
       end
+
+      # stub GET /reviewBuilder/emailTemplate/{templateId}
+      Excon.stub(expects: 200, method: :get, path: %r{^/v5/reviewBuilder/emailTemplate/([^/]+)$}) do |params|
+        request_params, mock_data = parse_stub_params(params)
+        {
+          body: email_response_body,
+          status: 200
+        }
+      end
+
+      # stub POST /reviewBuilder/emailTemplate/{templateId}
+      Excon.stub(expects: 200, method: :post, path: %r{^/v5/reviewBuilder/emailTemplate/([^/]+)$}) do |params|
+        params = JSON.parse(params[:body])
+        {
+          body: 
+          {  
+            "_id": "574e330cd4c6c9beb42c4ebd",
+            "name": "newEmailTemp",
+            "content": "<html>Html is here</html>",
+            "templateType": "email",
+            "accountId": "56a184a6d4c61f5267b3f386",
+            "deleted": false,
+            "dateAdded": 1464742668274 
+          },
+          status: 200
+        }
+      end
     end
   end
 end
